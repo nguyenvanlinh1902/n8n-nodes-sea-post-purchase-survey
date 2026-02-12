@@ -1,0 +1,71 @@
+{
+	"name": "n8n-nodes-sea-post-purchase-survey",
+	"version": "1.0.2",
+	"description": "SEA Post Purchase Survey App n8n community node for webhook integration",
+	"license": "MIT",
+	"keywords": [
+		"n8n-community-node-package",
+		"sea-post-purchase-survey",
+		"survey",
+		"webhook",
+		"automation"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/nguyenvanlinh1902/n8n-nodes-sea-post-purchase-survey.git"
+	},
+	"homepage": "https://github.com/nguyenvanlinh1902/n8n-nodes-sea-post-purchase-survey#readme",
+	"bugs": {
+		"url": "https://github.com/nguyenvanlinh1902/n8n-nodes-sea-post-purchase-survey/issues"
+	},
+	"author": {
+		"name": "AVADA Commerce",
+		"email": "mike@avada.io",
+		"url": "https://avada.io"
+	},
+	"scripts": {
+		"build": "tsc && npm run copy:icons",
+		"copy:icons": "mkdir -p dist/nodes/AgSurvey && cp nodes/AgSurvey/*.svg dist/nodes/AgSurvey/",
+		"build:watch": "tsc --watch",
+		"dev": "npm run build && n8n start",
+		"lint": "eslint nodes credentials --ext .ts",
+		"lint:fix": "eslint nodes credentials --ext .ts --fix",
+		"format": "prettier nodes credentials --write",
+		"prepublishOnly": "npm run build"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE.md"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/AgSurveyApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/AgSurvey/AgSurveyTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"n8n-workflow": "^1.68.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"resolutions": {
+		"chokidar": "^3.6.0"
+	},
+	"overrides": {
+		"chokidar": "^3.6.0"
+	}
+}
