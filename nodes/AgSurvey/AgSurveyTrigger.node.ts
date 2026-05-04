@@ -8,7 +8,7 @@ import type {
 	IDataObject,
 	JsonObject,
 } from 'n8n-workflow';
-import { NodeApiError } from 'n8n-workflow';
+import { NodeApiError, NodeConnectionTypes } from 'n8n-workflow';
 import { CONFIG } from '../../const/config';
 
 export class AgSurveyTrigger implements INodeType {
@@ -24,7 +24,7 @@ export class AgSurveyTrigger implements INodeType {
 			name: 'SEA Post Purchase Survey Trigger',
 		},
 		inputs: [],
-		outputs: ['main'],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'agSurveyApi',

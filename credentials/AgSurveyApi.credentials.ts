@@ -13,6 +13,8 @@ export class AgSurveyApi implements ICredentialType {
 
 	icon = 'file:agsurvey.svg' as const;
 
+	documentationUrl = 'https://github.com/nguyenvanlinh1902/n8n-nodes-sea-post-purchase-survey#credentials';
+
 	properties: INodeProperties[] = [
 		{
 			displayName: 'API Key',
