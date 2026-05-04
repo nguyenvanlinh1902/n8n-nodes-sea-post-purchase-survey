@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-sea-post-purchase-survey",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "SEA Post Purchase Survey App n8n community node for webhook integration",
 	"license": "MIT",
 	"keywords": [
@@ -61,11 +61,5 @@
 	},
 	"peerDependencies": {
 		"n8n-workflow": "*"
-	},
-	"resolutions": {
-		"chokidar": "^3.6.0"
-	},
-	"overrides": {
-		"chokidar": "^3.6.0"
 	}
 }

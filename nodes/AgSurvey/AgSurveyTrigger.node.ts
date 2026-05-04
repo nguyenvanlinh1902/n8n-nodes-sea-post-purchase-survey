@@ -6,7 +6,9 @@ import type {
 	IWebhookResponseData,
 	IHttpRequestOptions,
 	IDataObject,
+	JsonObject,
 } from 'n8n-workflow';
+import { NodeApiError } from 'n8n-workflow';
 import { CONFIG } from '../../const/config';
 
 export class AgSurveyTrigger implements INodeType {
@@ -78,20 +80,18 @@ export class AgSurveyTrigger implements INodeType {
 					const subscriptions = (response.subscriptions as IDataObject[]) || [];
 					const webhookData = this.getWorkflowStaticData('node');
 
-					// Find matching subscription
 					const existingSub = subscriptions.find(
 						(sub) => sub.targetUrl === webhookUrl && sub.event === event && sub.isActive,
 					);
 
 					if (existingSub) {
-						// Store subscription ID for later deletion
 						webhookData.subscriptionId = existingSub.id;
 						return true;
 					}
 
 					return false;
 				} catch (error) {
-					return false;
+					throw new NodeApiError(this.getNode(), error as JsonObject);
 				}
 			},
 
@@ -125,8 +125,7 @@ export class AgSurveyTrigger implements INodeType {
 
 					return false;
 				} catch (error) {
-					// Error caught - let n8n handle retry logic
-					return false;
+					throw new NodeApiError(this.getNode(), error as JsonObject);
 				}
 			},
 
@@ -154,10 +153,8 @@ export class AgSurveyTrigger implements INodeType {
 					delete webhookData.subscriptionId;
 					return true;
 				} catch (error) {
-					// Always cleanup static data even if delete fails
-					// This prevents orphaned references if credential was deleted
 					delete webhookData.subscriptionId;
-					return false;
+					throw new NodeApiError(this.getNode(), error as JsonObject);
 				}
 			},
 		},
