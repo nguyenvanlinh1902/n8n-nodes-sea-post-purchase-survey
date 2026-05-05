@@ -22,8 +22,10 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Show npm version
-        run: npm --version
+      - name: Upgrade npm to support OIDC
+        run: |
+          npm install -g npm@11.5.1 --force
+          npm --version
 
       - name: Install dependencies
         run: npm install --no-package-lock
